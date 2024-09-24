@@ -472,6 +472,39 @@
     display: block;
 }
 
+
+/*control button*/
+.custom-controls {
+    display: flex;
+height: 70px;
+width: 100% ;
+background-color: #141414;
+font-size: 20px;
+font-weight: bold;
+border-radius: 20px;
+border: none;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+margin-top: 20px;
+align-items: center;
+justify-content: center;
+gap: 20px;
+}
+
+.custom-controls .button {
+background-color: #fff;
+font-size: 20px;
+border-radius: 10px;
+border: none;
+height: fit-content;
+width: fit-content;
+align-items: center;
+justify-content: center;
+padding: 10px;
+margin-top: 13px;
+margin-bottom: 10px;
+gap: 50px;
+}
+
 /* Password Input */
 #password-container {
     display: flex;
@@ -743,7 +776,6 @@ pointer-events: all;
 
 
                <!-- Password Input -->
-               <!--<div class="overlay">-->
                <div id="vaultContent" style="margin-top: 20px;">
                   <input type="password" id="password" placeholder="Enter Password" style="height: 50px; width: 100%; border-radius: 5px; margin-bottom: 10px; font-size: 20px; text-align: center; background-color: #222;">
                   <button id="submit" style="height: 40px; width: 100%; border-radius: 20px; margin-bottom: 10px; border: none; font-size: 15px; font-weight: bold;">Submit</button>
@@ -751,12 +783,14 @@ pointer-events: all;
                   <!-- Hidden content goes here -->
                   <h2 id="vault-desc">Good Job , Now Close It
                     <img src="line.gif" style="margin-bottom: 20px">
-                      <video height="50%" width="100%" controls><source src="VID_74030108_171907_216.mp4" style="margin-bottom: 20px;"></video>
+                      <video id="myVideo" height="50%" width="100%" controls><source src="lv_0_20240808201338.mp4" style="margin-bottom: 20px;"></video></h2>
+                <!--<div class="custom-controls">
+                <button onclick="playPause()" class="button">Play/Pause</button>
+                <button onclick="muteUnmute()" class="button">Mute/Unmute</button>
+                </div>-->
                 </div>
                 <div id="error" style="color: red; display: none;"></div>
-              </div>
             </div>
-            <!--</div>-->
         </section>
 
 
@@ -901,6 +935,11 @@ const vaultDesc = document.getElementById('vault-desc');
             vaultBox.classList.remove('active');
             vaultDesc.style.display = 'none';
         });
+        closeVaultBtn.addEventListener('click', function (event) {
+            video.pause();
+        })
+
+
 
 
 
@@ -912,6 +951,9 @@ closeVaultBtn.addEventListener('click', function (event) {
     vaultPasswordInput.value = ''; // Clear the input
 });
 
+closeVaultBtn.addEventListener('click', function (event) {
+    video.pause();
+})
 
 const correctPassword = "12345"; // Replace with your actual password
   const submitButton = document.getElementById('submit');
@@ -932,13 +974,29 @@ const correctPassword = "12345"; // Replace with your actual password
     passwordInput.value = ''; // Clear the input field
   });
 
-document.getElementById('content').addEventListener('contextmenu', function(e){
-    e.preventDefault();
-});
+//const video = document.getElementById('myVideo');
+//
+//    function playPause() {
+//        if (video.paused) {
+//            video.play();
+//        } else {
+//            video.pause();
+//        }
+//    }
+//
+//    function muteUnmute() {
+//        video.muted = !video.muted;
+//    }
+//
+//    // Disable right-click and touch interactions
+//    document.getElementById('content').addEventListener('contextmenu', function(e) {
+//        e.preventDefault();
+//    });
+//
+//    document.getElementById('content').addEventListener('touchstart', function(e) {
+//        e.preventDefault();
+//    });
 
-document.getElementById('content').addEventListener('touchstart', function(e){
-    e.preventDefault();
-});
 
 
 //modal for preview
